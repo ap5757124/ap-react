@@ -9,7 +9,7 @@ const Test: React.FC = () => {
     return (
         <>
             <button onClick={handleClick}>更改值</button>
-            <div id="aaa">{arr}</div>
+            <div id="aaa" className="text-[#ff00ff]">{arr}</div>
         </>
     )
 }
