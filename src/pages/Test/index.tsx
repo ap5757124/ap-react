@@ -1,17 +1,30 @@
 import React, {useState, useRef} from "react";
-
+import { Button } from 'antd';
 
 const Test: React.FC = () => {
-    let [arr, setArr] = useState([1, 2, 3])
+    console.log('render')
+    let timer = useRef<null | NodeJS.Timeout>(null)
+    let [count, setCount] = useState(0)
     const handleClick = () => {
-        setArr(arr.filter((item) => item !== 1)) //删除指定元素
-    }
+        timer.current = setInterval(() => {
+            setCount(count => count + 1)
+        }, 300)
+    };
+    const handleEnd = () => {
+        if (timer.current) {
+            clearInterval(timer.current)
+            timer.current = null
+        }
+    };
     return (
-        <>
-            <button onClick={handleClick}>更改值</button>
-            <div id="aaa" className="text-[#ff00ff]">{arr}</div>
-        </>
-    )
+        <div className='mt-[20px] ml-[20px]'>
+            <Button type="primary">Button</Button>
+            <Button type="primary">Primary Button</Button>
+            {/*<button onClick={handleClick}>开始计数</button>*/}
+            {/*<button onClick={handleEnd}>结束计数</button>*/}
+            {/*<div>{count}</div>*/}
+        </div>
+    );
 }
 
 export default Test;
